@@ -11,12 +11,12 @@ from bs4 import BeautifulSoup
 import ssl
 
 # Ignore SSL certificate errors
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+cte = ssl.create_default_context()
+cte.check_hostname = False
+cte.verify_mode = ssl.CERT_NONE
 
 url = input('Enter - ')
-html = urlopen(url, context=ctx).read()
+html = urlopen(url, context=cte).read()
 
 # html.parser is the HTML parser included in the standard Python 3 library.
 # information on other HTML parsers is here:
