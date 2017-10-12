@@ -15,10 +15,21 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 url = input('Enter - ')
-html = urllib.request.urlopen(url, context=ctx).read()
-soup = BeautifulSoup(html, 'html.parser')
 
 # Retrieve all of the anchor tags
-tags = soup('a')
-for tag in tags:
-    print(tag.get('href', None))
+position = 18
+count = 7
+
+def newlink(url, position):
+	html = urllib.request.urlopen(url, context=ctx).read()
+	soup = BeautifulSoup(html, 'html.parser')
+	tags = soup('a')
+	new_url = tags[position-1].get('href')
+	return new_url
+
+for item in range(count):
+	x = newlink(url, position)
+	url = x
+final = urllib.request.urlopen(url, context=ctx).read()
+finalsoup = BeautifulSoup(final, 'html.parser')
+print (finalsoup.title.string.split(' ')[2])
